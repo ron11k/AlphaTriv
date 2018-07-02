@@ -162,13 +162,11 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
     }
 
-    //public void  deleteQuestionsAndAnswers(){
 
-    //}
 
     //===========================================================================================
     public void listAllQuestionsAndAnswers(SQLiteDatabase sqLiteDatabase){
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "+ TABLE_QUESTIONS_AND_ANSWERS + " ORDER BY " + COLUMN_ID_QUESTIONS,null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "+ TABLE_QUESTIONS_AND_ANSWERS + " WHERE " + COLUMN_ID_QUESTIONS,null);
 
         ArrayList<String> arrQAA = new ArrayList<String>();
 
