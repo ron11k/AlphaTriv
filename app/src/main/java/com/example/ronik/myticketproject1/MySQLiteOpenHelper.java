@@ -165,7 +165,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 */
 
 
-        randomizeQuestion(sqLiteDatabase);
+        //randomizeQuestion(sqLiteDatabase);
     }
 
 
@@ -194,7 +194,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     public OneTableRawData randomizeQuestion(SQLiteDatabase sqLiteDatabase){
 
 
-        OneTableRawData theRundomRow = new OneTableRawData();
+        OneTableRawData theRundomRow = null;
 
         Integer integer = (int) (7 * Math.random());
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "+ TABLE_QUESTIONS_AND_ANSWERS + " WHERE " + COLUMN_ID_QUESTIONS +" = ?",new String[]{Integer.toString(integer)});
@@ -205,11 +205,42 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
             while (!cursor.isAfterLast()){
                 arrQAA.add(cursor.getString(cursor.getColumnIndex(COLUMN_QUESTIONS)));
                 System.out.println("mark: "+ cursor.getString(cursor.getColumnIndex(COLUMN_QUESTIONS)));
+
+                arrQAA.add(cursor.getString(cursor.getColumnIndex(COLUMN_CORRECT_ANSWER)));
+                arrQAA.add(cursor.getString(cursor.getColumnIndex(COLUMN_WRONG_ANSWER0)));
+                arrQAA.add(cursor.getString(cursor.getColumnIndex(COLUMN_WRONG_ANSWER1)));
+                arrQAA.add(cursor.getString(cursor.getColumnIndex(COLUMN_WRONG_ANSWER2)));
+
+
+
                 cursor.moveToNext();
             }
 
-            theRundomRow.question = arrQAA.get(0);
+            String question = arrQAA.get(0);
+            String correctAnswer = arrQAA.get(1);
+            String wrongAnswer0 = arrQAA.get(2);
+            String wrongAnswer1 = arrQAA.get(3);
+            String wrongAnswer2 = arrQAA.get(4);
+
+            theRundomRow = new OneTableRawData(question,
+                    correctAnswer, wrongAnswer0, wrongAnswer1, wrongAnswer2);
+
             System.out.println("mark: "+ theRundomRow.question);
+            System.out.println("mark: "+ theRundomRow.correctAnswer);
+            System.out.println("mark: "+ theRundomRow.wrongAnswer0);
+            System.out.println("mark: "+ theRundomRow.wrongAnswer1);
+            System.out.println("mark: "+ theRundomRow.wrongAnswer2);
+
+
+            /*
+            ArrayList<String> fetchedArr = new ArrayList<String>();
+            fetchedArr.add(theRundomRow.correctAnswer);
+            fetchedArr.add(theRundomRow.wrongAnswer0);
+            fetchedArr.add(theRundomRow.wrongAnswer1);
+            fetchedArr.add(theRundomRow.wrongAnswer2);
+            */
+
+
         }
 
         else

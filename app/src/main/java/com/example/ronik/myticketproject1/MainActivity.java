@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,6 +35,24 @@ public class MainActivity extends AppCompatActivity {
         openHelper.addTables(sqLiteDatabase);
 
         openHelper.insertQuestionsAndAnswers(sqLiteDatabase);
+
+        OneTableRawData otrd = openHelper.randomizeQuestion(sqLiteDatabase);
+
+        TextView tv = findViewById(R.id.textView);
+        tv.setText(otrd.getQuestion());
+
+        tv = findViewById(R.id.rb0);
+        tv.setText(otrd.getCorrectAnswer());
+
+        tv = findViewById(R.id.rb1);
+        tv.setText(otrd.getWrongAnswer0());
+
+        tv = findViewById(R.id.rb2);
+        tv.setText(otrd.getWrongAnswer1());
+
+        tv = findViewById(R.id.rb3);
+        tv.setText(otrd.getWrongAnswer2());
+
 
         openHelper.listAllQuestionsAndAnswers(sqLiteDatabase);
 

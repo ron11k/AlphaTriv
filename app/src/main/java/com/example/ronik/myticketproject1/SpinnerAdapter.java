@@ -1,4 +1,4 @@
-package com.example.ronik.myticketproject1;
+/*package com.example.ronik.myticketproject1;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
@@ -56,6 +56,6 @@ public class SpinnerAdapter extends BaseAdapter {
     }
 }
 
-
+*/
 
 
