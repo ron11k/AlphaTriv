@@ -3,6 +3,7 @@ package com.example.ronik.myticketproject1;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,12 +12,33 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    SQLiteDatabase sqLiteDatabase = null;
+    MySQLiteOpenHelper openHelper = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         System.out.println("hello");
+
+        this.deleteDatabase("AlphaTriv.db");
+
+        openHelper = new MySQLiteOpenHelper(this);
+
+        sqLiteDatabase = openHelper.getWritableDatabase();
+
+
+        openHelper.dropTable(sqLiteDatabase, "questions_answers");
+
+        openHelper.addTables(sqLiteDatabase);
+
+        openHelper.insertQuestionsAndAnswers(sqLiteDatabase);
+
+        openHelper.listAllQuestionsAndAnswers(sqLiteDatabase);
+
+
+        //===========================================================
 
         registerToGetBroadcastWithPendingIntent();
     }
@@ -67,4 +89,9 @@ public class MainActivity extends AppCompatActivity {
                 System.currentTimeMillis()
                         + (15 * 1000), pendingIntent);
     }
+
+    public void close(){
+        openHelper.close();
+    }
+
 }

@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/transparent">
+    android:background="@color/BluesIII">
 
 
 
@@ -49,7 +49,7 @@
                     android:onClick="onRadioButtonClicked"/>
 
                 <RadioButton
-                    android:id="@+id/rb3"
+                    android:id="@+id/rb1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -62,7 +62,7 @@
                     android:onClick="onRadioButtonClicked"/>
 
                 <RadioButton
-                    android:id="@+id/rb1"
+                    android:id="@+id/rb2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -75,7 +75,7 @@
                     android:onClick="onRadioButtonClicked"/>
 
                 <RadioButton
-                    android:id="@+id/rb2"
+                    android:id="@+id/rb3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
