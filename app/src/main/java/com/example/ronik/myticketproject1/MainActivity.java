@@ -36,7 +36,10 @@ public class MainActivity extends AppCompatActivity {
 
         openHelper.insertQuestionsAndAnswers(sqLiteDatabase);
 
-        OneTableRawData otrd = openHelper.randomizeQuestion(sqLiteDatabase);
+        randomizeQuestionForTheScreen();
+
+        /*OneTableRawData otrd = openHelper.randomizeQuestion(sqLiteDatabase);
+
 
         TextView tv = findViewById(R.id.textView);
         tv.setText(otrd.getQuestion());
@@ -52,14 +55,27 @@ public class MainActivity extends AppCompatActivity {
 
         tv = findViewById(R.id.rb3);
         tv.setText(otrd.getWrongAnswer2());
+        */
 
 
-        openHelper.listAllQuestionsAndAnswers(sqLiteDatabase);
+        //openHelper.listAllQuestionsAndAnswers(sqLiteDatabase);
 
 
         //===========================================================
 
         registerToGetBroadcastWithPendingIntent();
+    }
+
+    void randomizeQuestionForTheScreen(){
+        TextView tvQ = (TextView) findViewById(R.id.textView);
+        RadioButton cans = (RadioButton) findViewById(R.id.rb0);
+        RadioButton wansw0 = (RadioButton) findViewById(R.id.rb1);
+        RadioButton wansw1 = (RadioButton) findViewById(R.id.rb2);
+        RadioButton wansw2 = (RadioButton) findViewById(R.id.rb3);
+
+
+        new AsyncTaskDBRequest(openHelper ,tvQ, cans, wansw0, wansw1, wansw2).execute();
+
     }
 
 
