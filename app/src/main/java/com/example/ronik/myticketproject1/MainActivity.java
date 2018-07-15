@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         openHelper.addTables(sqLiteDatabase);
 
-        openHelper.insertQuestionsAndAnswers(sqLiteDatabase);
+        openHelper.insertQuestionsAndAnswersManually(sqLiteDatabase);
 
         randomizeQuestionForTheScreen();
 

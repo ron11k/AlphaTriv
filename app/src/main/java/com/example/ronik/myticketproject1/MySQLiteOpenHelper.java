@@ -6,7 +6,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
@@ -22,6 +27,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "AlphaTriv.db";
     private static final int DATABASE_VERSION = 1;
 
+    Context context;
     private static final String QUESTIONS_AND_ANSWERS_TABLE_CREATE =
             "CREATE TABLE " + TABLE_QUESTIONS_AND_ANSWERS +
                     " (" + COLUMN_ID_QUESTIONS +" INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -35,6 +41,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
     public MySQLiteOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context=context;
     }
 
     @Override
@@ -56,7 +63,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + tableName + "" );//+ TABLE_QUESTIONS_AND_ANSWERS
     }
     //========================================================================
-    public void insertQuestionsAndAnswers(SQLiteDatabase sqLiteDatabase){
+    public void insertQuestionsAndAnswersManually(SQLiteDatabase sqLiteDatabase){
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('What is the English translation for the name of the German automaker Volkswagen?','People’s car','Best Car','Quality Car','Folk`s car',1);");
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('With twelve Oscar nominations and three wins, who is the most nominated male actor in Academy Awards history?','Jack Nicholson','Leonardo DiCaprio','Denzel Washington','Al Pacino',2);");
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Montevideo','Costa Rica','Guatemala',3);");
@@ -67,105 +74,57 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Name the director of the Lord of the Rings trilogy. ','Peter Jackson','Christopher Nolan','Sam Raimi','Ivan Gazidis',8);");
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Who played Neo in The Matrix? ','Keanu Reeves','Matt Damon','Ben Smith','Michael Nyqvist',9);");
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Name the actress whose career began at the age of 3, and who went on to star in films such as Contact, Maverick and The Silence of the Lambs? ','Jodie Foster','Daniel Foster','Fisting Foster','George Foster',10);");
-        /*
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
 
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
 
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_QUESTIONS_AND_ANSWERS+"("+COLUMN_QUESTIONS+","+COLUMN_CORRECT_ANSWER+","+COLUMN_WRONG_ANSWER0+","+COLUMN_WRONG_ANSWER1+","+COLUMN_WRONG_ANSWER2+","+ COLUMN_ID_QUESTIONS+") VALUES('Tenochtitlan, founded in 1324, is now known as what city?','Mexico City','Madrid','Costa Rica','Guatemala',3);");
-*/
+        insertQuestionsAndAnswersFromJSON(sqLiteDatabase);
 
 
         //randomizeQuestion(sqLiteDatabase);
+    }
+    public void insertQuestionsAndAnswersFromJSON(SQLiteDatabase sqLiteDatabase){
+
+        String stHumanReadable = null;
+
+        String stJson = context.getResources().getString(R.string.json_questions_str);
+
+        //System.out.println("Mark: " + stJson); stHumanReadable
+
+
+
+
+        try {
+            // Get the array from the JSONObject
+            //JSONObject jsonRootObject = new JSONObject(stJson);
+            //JSONArray jsonArray = jsonRootObject.optJSONArray("nutrients");
+
+
+            JSONArray jsonArray = new JSONArray(stJson);
+
+
+
+
+            //Iterate the jsonArray and print the info of JSONObjects
+            for(int i=0; i < jsonArray.length(); i++){
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                String question = jsonObject.optString("A").toString();
+                String correctAnswer = jsonObject.optString("B").toString();
+                String wrongAnswer1 = jsonObject.optString("C").toString();
+                String wrongAnswer2 = jsonObject.optString("D").toString();
+                String wrongAnswer3 = jsonObject.optString("E").toString();
+
+
+
+                stHumanReadable += "\nNode "+ i +" : \n q= "+ question +
+                        " \n correct answer = "+ correctAnswer +" \n wa1= "+ wrongAnswer1 +" \n "+" \n wa2= "+ wrongAnswer2 +" \n "+" \n wa3= "+ wrongAnswer3 +" \n ";
+            }
+
+        } catch (JSONException e) {e.printStackTrace();}
+
+
+        System.out.println("Mark: " + stHumanReadable);
+
+
     }
 
 

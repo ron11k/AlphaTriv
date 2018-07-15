@@ -1,0 +1,705 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="json_questions_str" tools:ignore="TypographyEllipsis">[
+ {
+   "A": "What is the English translation for the name of the German automaker Volkswagen?\",
+   "B": "People\’s car",
+   "C": "Folk\'s car",
+   "D": "Men\'s car",
+   "E": \"German car\"
+ },
+ {
+   "A": "With twelve Oscar nominations and three wins, who is the most nominated male actor in Academy Awards history?",
+   "B": "Jack Nicholson",
+   "C": "Leonardo Di Caprio",
+   "D": "Denzel Washington",
+   "E": "Al Pacino"
+ },
+ {
+   "A": "Tenochtitlan, founded in 1324, is now known as what city?",
+   "B": "Mexico City",
+   "C": "Montevideo",
+   "D": "Santiago",
+   "E": "Brazilia"
+ },
+ {
+   "A": "Located in southern Siberia, what lake is the deepest and largest freshwater lake in the world?",
+   "B": "Lake Baikal",
+   "C": "Great Slave Lake",
+   "D": "Lake Ontario",
+   "E": "Lake Issyk-Kul"
+ },
+ {
+   "A": "Name the actor who starred in 142 films including The Quiet Man, The Shootist, The Searchers and Stagecoach",
+   "B": "John Wayne",
+   "C": "Ron Howard",
+   "D": "James Stewart",
+   "E": "Ben Afleck"
+ },
+ {
+   "A": "What is the oldest film ever made, and when was it made? ",
+   "B": "Roundhay Garden Scene made in 1888",
+   "C": "A Trip to the Moon, 1902",
+   "D": "The Execution of Mary Stuart, 1895",
+   "E": "Fight Club,1999"
+ },
+ {
+   "A": "Which actress has won the most Oscars? ",
+   "B": "Katharine Hepburn",
+   "C": "Russell Crowe",
+   "D": "Leonardo Di Caprio",
+   "E": "Emma stone"
+ },
+ {
+   "A": "Name the director of the Lord of the Rings trilogy. ",
+   "B": "Peter Jackson.",
+   "C": "Christopher Nolan",
+   "D": "Sam Raimi",
+   "E": "Ivan Gazidis"
+ },
+ {
+   "A": "Who played Neo in The Matrix? ",
+   "B": "Keanu Reeves",
+   "C": "Matt Damon",
+   "D": "Ben Smith",
+   "E": "Michael Nyqvist"
+ },
+ {
+   "A": "Name the actress whose career began at the age of 3, and who went on to star in films such as Contact, Maverick and The Silence of the Lambs?",
+   "B": "Jodie Foster",
+   "C": "Daniel Foster",
+   "D": "Fisting Foster",
+   "E": "George Foster"
+ },
+ {
+   "A": "Bray Studios, near Windsor in Berkshire, was home to which famous brand of horror films? ",
+   "B": "Hammer Horror",
+   "C": "Shild Horror",
+   "D": "Home Horror",
+   "E": "Main Horror"
+ },
+ {
+   "A": "Which is the only American state to begin with the letter p? ",
+   "B": "Pennsylvania",
+   "C": "Philadelphia",
+   "D": "Phoenix",
+   "E": "Panama"
+ },
+ {
+   "A": "Name the world\'s biggest island. ",
+   "B": "Greenland",
+   "C": "Neverland",
+   "D": "Ozoki Yaka",
+   "E": "Rain Island"
+ },
+ {
+   "A": "What is the world\'s longest river? ",
+   "B": "Amazon",
+   "C": "Volga",
+   "D": "Nile ",
+   "E": "Niagara"
+ },
+ {
+   "A": "Name the world\'s largest ocean.",
+   "B": "Pacific",
+   "C": "Arctic",
+   "D": "South",
+   "E": "Silent"
+ },
+ {
+   "A": "What is the diameter of Earth?",
+   "B": "8,000 miles",
+   "C": "7,000 miles",
+   "D": "7500 miles",
+   "E": "5000 miles"
+ },
+ {
+   "A": "Which four British cities have underground rail systems?",
+   "B": "Liverpool",
+   "C": "Cardiff",
+   "D": "Wales",
+   "E": "Marylebone"
+ },
+ {
+   "A": "What is the capital city of Spain?",
+   "B": "Madrid",
+   "C": "Barcelona",
+   "D": "Valencia",
+   "E": "Seville"
+ },
+ {
+   "A": "Which country is Prague in? ",
+   "B": "Czech Republic",
+   "C": "Netherland",
+   "D": "Sweden",
+   "E": "Denemark"
+ },
+ {
+   "A": "Which English town was a forerunner of the Parks Movement and the first city in Europe to have a street tram system?",
+   "B": "Birkenhead",
+   "C": "Birdhead",
+   "D": "Headbirk",
+   "E": "Hamburg"
+ },
+ {
+   "A": "What is the capital of Turkey? ",
+   "B": "Ankara",
+   "C": "Kanbara",
+   "D": "Ottawa",
+   "E": "Istanbul"
+ },
+ {
+   "A": "What is the national animal of China? ",
+   "B": "Giant panda",
+   "C": "Dog",
+   "D": "Cat",
+   "E": "Lion"
+ },
+ {
+   "A": "Which Turkish city has the name of a cartoon character? ",
+   "B": "Batman",
+   "C": "Spiderman",
+   "D": "Hulk",
+   "E": "Thanos"
+ },
+ {
+   "A": "What is the noisiest city in the world? ",
+   "B": "Hong Kong",
+   "C": "Tokyo",
+   "D": "Bagdad",
+   "E": "New York"
+ },
+ {
+   "A": "What is the name of the desert area in Mexico? ",
+   "B": "Sonora",
+   "C": "Bonora",
+   "D": "Gonora",
+   "E": "New Mexicana"
+ },
+ {
+   "A": "What is a very cold part of Russia?",
+   "B": "Siberia",
+   "C": "Moscow",
+   "D": "Antartica",
+   "E": "Saint Peterburg"
+ },
+ {
+   "A": "How many continents are there? ",
+   "B": "Seven",
+   "C": "Six",
+   "D": "One",
+   "E": "Ten"
+ },
+ {
+   "A": "On which Italian island is Palermo? ",
+   "B": "Sicily",
+   "C": "Venice",
+   "D": "Milano",
+   "E": "Southampton"
+ },
+ {
+   "A": "How many time zones are there in the world? ",
+   "B": "Twenty-four",
+   "C": "Twenty-two",
+   "D": "Twenty-three",
+   "E": "Twenty-five"
+ },
+ {
+   "A": "Which is the largest desert on earth? ",
+   "B": "Sahara",
+   "C": "Bahara",
+   "D": "Sing Min Yun",
+   "E": "DesertStorm"
+ },
+ {
+   "A": "Which country did once have the name Rhodesia? ",
+   "B": "Zimbabwe",
+   "C": "South Africa",
+   "D": "Ethiopia",
+   "E": "Zanzibar"
+ },
+ {
+   "A": "How many players has a hockey team got on the ice? ",
+   "B": "Six",
+   "C": "Seven",
+   "D": "Eight",
+   "E": "Eleven"
+ },
+ {
+   "A": "What was the Olympic city of 1992 ? ",
+   "B": "Barcelona",
+   "C": "Madrid",
+   "D": "Stockholm",
+   "E": "Berlin"
+ },
+ {
+   "A": "What is the largest stadium in the world ? ",
+   "B": "Azteca Stadium in Mexico city",
+   "C": "Camp Nou",
+   "D": "Emirates Stadium",
+   "E": "Alianz Arena"
+ },
+ {
+   "A": "What is the name of the Barcelona football stadium ? ",
+   "B": "Camp Nou",
+   "C": "Baranbeau",
+   "D": "Barcelona Stadium",
+   "E": "The Ancient Stadium"
+ },
+ {
+   "A": "What is the capital of Ecuador? ",
+   "B": "Quito",
+   "C": "Santiago",
+   "D": "Caracas",
+   "E": "Brazilia"
+ },
+ {
+   "A": "What is the capital of Turkmenistan? ",
+   "B": "Ashgabat",
+   "C": "Islamabad",
+   "D": "Tashkent",
+   "E": "New Turkey"
+ },
+ {
+   "A": "Complete this phrase. As sick as a...",
+   "B": "Parrot",
+   "C": "Penguin",
+   "D": "Puffin",
+   "E": "Partridge"
+ },
+ {
+   "A": "Which legal document states a person\'s wishes regarding the disposal of their property after death?",
+   "B": "Will",
+   "C": "Shall",
+   "D": "Would",
+   "E": "Should"
+ },
+ {
+   "A": "Complete the title of the James Bond film The Man With The Golden...",
+   "B": "Gun",
+   "C": "Tooth",
+   "D": "Delicious",
+   "E": "Eagle"
+ },
+ {
+   "A": "Which of these fruits shares its name with something superior or desirable?",
+   "B": "Plum",
+   "C": "Apricot",
+   "D": "Mango",
+   "E": "Grapefruit"
+ },
+ {
+   "A": "In which sport do two teams pull at the opposite ends of a rope?",
+   "B": " Tug of war",
+   "C": "Ice hockey",
+   "D": " Basketball",
+   "E": "Polo"
+ },
+ {
+   "A": "Where would a cowboy wear his chaps?",
+   "B": "On his legs",
+   "C": " On his arms",
+   "D": " On his hands",
+   "E": " On his head"
+ },
+ {
+   "A": "Which of these zodiac signs is not represented by an animal that grows horns?",
+   "B": "Aquarius",
+   "C": "Capricorn",
+   "D": "Aries",
+   "E": "Taurus"
+ },
+ {
+   "A": "Sherpas and Gurkhas are native to which country?",
+   "B": "Nepal",
+   "C": "Morocco",
+   "D": "Ecuador ",
+   "E": "Russia"
+ },
+ {
+   "A": " Prime Minister Tony Blair was born in which country?",
+   "B": "Scotland",
+   "C": " Northern Ireland ",
+   "D": "Wales",
+   "E": "England"
+ },
+ {
+   "A": "Whose autobiography has the title A Long Walk To Freedom?",
+   "B": "Nelson Mandela",
+   "C": " Ranulph Fiennes ",
+   "D": "Mikhail Gorbachev",
+   "E": "Mother Teresa"
+ },
+ {
+   "A": "Duffle coats are named after a town in which country?",
+   "B": "Belgium",
+   "C": "Holland",
+   "D": "Germany",
+   "E": "Austria"
+ },
+ {
+   "A": "Complete this stage instruction in Shakespeare's The Winter's Tale: \"Exit, pursued by a ...\"",
+   "B": "Bear",
+   "C": "Tiger",
+   "D": "Dog  ",
+   "E": "Clown"
+ },
+ {
+   "A": "The young of which creature is known as a squab?",
+   "B": "Pigeon",
+   "C": "Octopus",
+   "D": "Salmon",
+   "E": "Horse"
+ },
+ {
+   "A": " Who is the patron saint of Spain?",
+   "B": "St James",
+   "C": " St John  ",
+   "D": " St Peter",
+   "E": " St Benedict"
+ },
+ {
+   "A": "Which king was married to Eleanor of Aquitaine?",
+   "B": " Henry II",
+   "C": " Henry V",
+   "D": " Henry I  ",
+   "E": " Richard I"
+ },
+ {
+   "A": "This shaven-headed American actor of Greek parentage was nominated for an Academy Award in The Birdman of Alcatraz:",
+   "B": "Telly Savalas",
+   "C": "Donald Pleasence ",
+   "D": "Samuel L. Jackson",
+   "E": "Yul Brynner"
+ },
+ {
+   "A": "Which of the following is found inside an \"Eskimo Pie\"?",
+   "B": "Ice cream",
+   "C": "Chocolate",
+   "D": "Caribou meat",
+   "E": "Goldfish"
+ },
+ {
+   "A": "What is the only U.S State that only borders one other?",
+   "B": "Maine",
+   "C": "Rhode Island ",
+   "D": "Washington",
+   "E": "Florida"
+ },
+ {
+   "A": "Name the number that is three more than one-fifth of one-tenth of one-half of 5,000.",
+   "B": "53",
+   "C": "103",
+   "D": "503",
+   "E": "108"
+ },
+ {
+   "A": "What’s the missing number?",
+   "B": "21",
+   "C": "20",
+   "D": "25",
+   "E": "17"
+ },
+ {
+   "A": "What's the oldest continuously inhabited city in the world?",
+   "B": "Istanbul, Turkey",
+   "C": "Athens, Greece",
+   "D": "Jerusalem",
+   "E": "Damascus, Syria"
+ },
+ {
+   "A": "What's the only U.S State with a spanish motto?",
+   "B": "California",
+   "C": "Idaho",
+   "D": "Montana",
+   "E": "Arizona"
+ },
+ {
+   "A": "The United States animal is a bald eagle… but in this context, “bald” doesn’t mean “hairless.” The “bald” part of the bird’s name comes from an Old English word meaning what?",
+   "B": "White",
+   "C": "Swooping",
+   "D": "Majestic",
+   "E": "Beautiful"
+ },
+ {
+   "A": "Name one primary colours.",
+   "B": "Red",
+   "C": "Orange",
+   "D": "Black",
+   "E": "White"
+ },
+ {
+   "A": "What is the painting 'La Gioconda' more usually known as? ",
+   "B": "The Mona Lisa.",
+   "C": "The Starry Night",
+   "D": "Salvator Mundi",
+   "E": "The Milkmaid"
+ },
+ {
+   "A": "What does the term 'piano' mean? ",
+   "B": "To be played softly.",
+   "C": "To be played rough",
+   "D": "To be played quietly",
+   "E": "To be played sharply"
+ },
+ {
+   "A": "Name the Spanish artist, sculptor and draughtsman famous for co-founding the Cubist movement. ",
+   "B": "Pablo Picasso.",
+   "C": "Leonardo da Vinci",
+   "D": "Diego Velázquez",
+   "E": "Vincent van Gogh"
+ },
+ {
+   "A": "How many valves does a trumpet have? ",
+   "B": "Three",
+   "C": "Two",
+   "D": "Four",
+   "E": "Only One"
+ },
+ {
+   "A": "Which singer’s real name is Stefani Joanne Angelina Germanotta?",
+   "B": "Lady Gaga",
+   "C": "Rihanna",
+   "D": "Sia",
+   "E": "Gwen Stefani"
+ },
+ {
+   "A": "How many players are there in a baseball team?",
+   "B": "Nine",
+   "C": "Eight",
+   "D": "Seven",
+   "E": "Ten"
+ },
+ {
+   "A": "The average human body contains how many pints of blood?",
+   "B": "Nine",
+   "C": "Ten",
+   "D": "Twenty",
+   "E": "Five"
+ },
+ {
+   "A": "Which is the highest waterfall in the world?",
+   "B": "Angel Falls",
+   "C": "Victoria Falls",
+   "D": "Saltos del Mocono",
+   "E": "Niagara Falls"
+ },
+ {
+   "A": "Which of the planets is closest to the sun?",
+   "B": "Mercury",
+   "C": "Moon",
+   "D": "Earth",
+   "E": "Mars"
+ },
+ {
+   "A": "According to Greek mythology who was the first woman on earth?",
+   "B": "Pandora",
+   "C": "Afrodita",
+   "D": "Venom",
+   "E": "Giselle"
+ },
+ {
+   "A": "In the sport of Judo, what color belt follows an orange belt?",
+   "B": "Green",
+   "C": "Blue",
+   "D": "Black",
+   "E": "White"
+ },
+ {
+   "A": "How many letters are there in the German alphabet?",
+   "B": "30",
+   "C": "29",
+   "D": "31",
+   "E": "27"
+ },
+ {
+   "A": "Little Cuba is the nickname of which US city?",
+   "B": "Miami",
+   "C": "Los Angeles",
+   "D": "Venice",
+   "E": "Florida"
+ },
+ {
+   "A": "What is the capital city of Peru?",
+   "B": "Lima",
+   "C": "Buenos Aires",
+   "D": "Quito",
+   "E": "Caracas"
+ },
+ {
+   "A": "In which year did the Bay of Pigs invasion take place?",
+   "B": "1961",
+   "C": "1964",
+   "D": "1959",
+   "E": "1966"
+ },
+ {
+   "A": "?Professional footballer Lionel Messi was born in which country",
+   "B": "Argentina",
+   "C": "Brazil",
+   "D": "Spain",
+   "E": "Sweden"
+ },
+ {
+   "A": "What was the name of the first manned mission to land on the moon?",
+   "B": "Apollo 11",
+   "C": "Apollo 10",
+   "D": "Apollo 12",
+   "E": "Moon 11"
+ },
+ {
+   "A": "In the game of chess, how many pawns does each player start with?",
+   "B": "Eight",
+   "C": "Seven",
+   "D": "Nine",
+   "E": "Ten"
+ },
+ {
+   "A": "What temperature does water boil at? ",
+   "B": "100C",
+   "C": "120C",
+   "D": "280C",
+   "E": "92.888C"
+ },
+ {
+   "A": "Where was Lope de Vega born? ",
+   "B": "Madrid",
+   "C": "Barcelona",
+   "D": "Valencia",
+   "E": "London"
+ },
+ {
+   "A": "What year did the Spanish Civil War end? ",
+   "B": "1939",
+   "C": "1941",
+   "D": "1943",
+   "E": "1963"
+ },
+ {
+   "A": " When did the First World War start? ",
+   "B": "1914",
+   "C": "1913",
+   "D": "1939",
+   "E": "1947"
+ },
+ {
+   "A": "Where is the smallest bone in the body?",
+   "B": "Ear",
+   "C": "Nose",
+   "D": "Butt",
+   "E": "Leg"
+ },
+ {
+   "A": "What colour is a panda?",
+   "B": "Black and White",
+   "C": "Black ",
+   "D": "Black and Yellow",
+   "E": "White and Blue"
+ },
+ {
+   "A": "Who cut Van Gogh’s ear?",
+   "B": "He did",
+   "C": "His Mother",
+   "D": "His Father",
+   "E": "His Wife"
+ },
+ {
+   "A": "What are the first three words of the bible? ",
+   "B": "In The Beginning",
+   "C": "In The End",
+   "D": "In The Last",
+   "E": "In The Name"
+ },
+ {
+   "A": "How many children has Queen Elizabeth the Second got? ",
+   "B": "4",
+   "C": "3",
+   "D": "2",
+   "E": "0"
+ },
+ {
+   "A": "When did the American Civil War end? ",
+   "B": "1865",
+   "C": "1965",
+   "D": "1875",
+   "E": "1855"
+ },
+ {
+   "A": "What’s the capital of Kenya? ",
+   "B": "Nairobi",
+   "C": "Kenya City",
+   "D": "Ashgabat",
+   "E": "Ankara"
+ },
+ {
+   "A": "How many squares are there on a chess board? ",
+   "B": "64",
+   "C": "59",
+   "D": "63",
+   "E": "68"
+ },
+ {
+   "A": "What language has the most words?",
+   "B": "English",
+   "C": "Russian",
+   "D": "Hebrew",
+   "E": "Spanish"
+ },
+ {
+   "A": "What money do they use in Japan? ",
+   "B": "Yen",
+   "C": "Euro",
+   "D": "Dollar",
+   "E": "Jeeps"
+ },
+ {
+   "A": "Where was El Greco born? ",
+   "B": "Greece",
+   "C": "Cyprus",
+   "D": "Italy",
+   "E": "Turkey"
+ },
+ {
+   "A": "What year did Elvis Presley die? ",
+   "B": "1977",
+   "C": "1974",
+   "D": "1975",
+   "E": "1967"
+ },
+ {
+   "A": "Who did Madonna marry? ",
+   "B": "Sean Penn",
+   "C": "Sean Paul",
+   "D": "Justin Timberlake",
+   "E": "Jason Derulo"
+ },
+ {
+   "A": "When was President Kennedy killed? ",
+   "B": "1963",
+   "C": "1965",
+   "D": "1958",
+   "E": "1970"
+ },
+ {
+   "A": "What nationality was Marco Polo? ",
+   "B": "Italian",
+   "C": "Russian",
+   "D": "Spanish",
+   "E": "Turkish"
+ },
+ {
+   "A": "who won world cup 2014?",
+   "B": "Germany",
+   "C": "Argentina",
+   "D": "Spain",
+   "E": "France"
+ },
+ {
+   "A": "What is Pluto in solar system?",
+   "B": "Dwarf planet",
+   "C": "a Gnome planet",
+   "D": "a Star",
+   "E": "Country"
+ }
+]</string>
+</resources>
