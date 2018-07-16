@@ -67,10 +67,10 @@ public class MainActivity extends AppCompatActivity {
 
     void randomizeQuestionForTheScreen(){
         TextView tvQ = (TextView) findViewById(R.id.textView);
-        RadioButton cans = (RadioButton) findViewById(R.id.rb0);
-        RadioButton wansw0 = (RadioButton) findViewById(R.id.rb1);
-        RadioButton wansw1 = (RadioButton) findViewById(R.id.rb2);
-        RadioButton wansw2 = (RadioButton) findViewById(R.id.rb3);
+        MyRadioButton cans = (MyRadioButton) findViewById(R.id.rb0);
+        MyRadioButton wansw0 = (MyRadioButton) findViewById(R.id.rb1);
+        MyRadioButton wansw1 = (MyRadioButton) findViewById(R.id.rb2);
+        MyRadioButton wansw2 = (MyRadioButton) findViewById(R.id.rb3);
 
 
         new AsyncTaskDBRequest(openHelper ,tvQ, cans, wansw0, wansw1, wansw2).execute();
@@ -128,4 +128,74 @@ public class MainActivity extends AppCompatActivity {
         openHelper.close();
     }
 
+    public void checkAnswer (View view)
+    {
+        // Check which radio button was selected
+        MyRadioButton rb0 = (MyRadioButton)findViewById(R.id.rb0);
+        MyRadioButton rb1 = (MyRadioButton)findViewById(R.id.rb1);
+        MyRadioButton rb2 = (MyRadioButton)findViewById(R.id.rb2);
+        MyRadioButton rb3 = (MyRadioButton)findViewById(R.id.rb3);
+
+        if (rb0.isSelected() == true && rb0.isTheCorrectAnswer == true)
+        {
+                theUserIsRight(rb0);
+        }
+
+        else if (rb1.isSelected() == true && rb1.isTheCorrectAnswer == true)
+        {
+            theUserIsRight(rb1);
+        }
+
+        else if (rb2.isSelected() == true && rb2.isTheCorrectAnswer == true)
+        {
+            theUserIsRight(rb2);
+        }
+
+        else if (rb3.isSelected() == true && rb3.isTheCorrectAnswer == true)
+        {
+            theUserIsRight(rb3);
+        }
+
+
+        theUserIsWrong();
+
+    }
+
+    private void theUserIsWrong() {
+        // the user was wrong,
+        // change his selected answer to red
+        // Check which radio button was selected
+        MyRadioButton rb0 = (MyRadioButton)findViewById(R.id.rb0);
+        MyRadioButton rb1 = (MyRadioButton)findViewById(R.id.rb1);
+        MyRadioButton rb2 = (MyRadioButton)findViewById(R.id.rb2);
+        MyRadioButton rb3 = (MyRadioButton)findViewById(R.id.rb3);
+
+        if (rb0.isSelected() == true)
+        {
+            //  change rb0 background to red
+        }
+
+        else if (rb1.isSelected() == true)
+        {
+            //  change rb1 background to red
+        }
+
+
+        else if (rb2.isSelected() == true)
+        {
+            //  change rb2 background to red
+        }
+
+        else if (rb3.isSelected() == true)
+        {
+            //  change rb3 background to red
+        }
+    }
+
+    private void theUserIsRight(MyRadioButton mrb) {
+
+        // the user answered correctly,
+        //   Change the color of the correct answer on the screen to green
+
+    }
 }
