@@ -13,10 +13,10 @@ public class AsyncTaskDBRequest extends AsyncTask<String, String, String> {
     final String TAG = "mark: ";
     MySQLiteOpenHelper openHelper;
     TextView questionTv;
-    RadioButton radB0;
-    RadioButton radB1;
-    RadioButton radB2;
-    RadioButton radB3;
+    MyRadioButton radB0;
+    MyRadioButton radB1;
+    MyRadioButton radB2;
+    MyRadioButton radB3;
 
     String stQuestion = "";
     String stCorrAnsw = "";
@@ -24,7 +24,7 @@ public class AsyncTaskDBRequest extends AsyncTask<String, String, String> {
     String stWrongAns1 = "";
     String stWrongAns2 = "";
 
-    public AsyncTaskDBRequest(MySQLiteOpenHelper openHelper,TextView question, RadioButton rb0, RadioButton rb1, RadioButton rb2, RadioButton rb3) {
+    public AsyncTaskDBRequest(MySQLiteOpenHelper openHelper,TextView question, MyRadioButton rb0, MyRadioButton rb1, MyRadioButton rb2, MyRadioButton rb3) {
 
         this.openHelper = openHelper;
 
@@ -70,10 +70,25 @@ public class AsyncTaskDBRequest extends AsyncTask<String, String, String> {
     protected void onPostExecute(String strFromDoInBg) {
 
         questionTv.setText(stQuestion);
+
+        // Randomize which MyRadioButton will show the correct answer
+        //  lets assume, just for example that it is radB2
+        // so do:
+        // radB2.setText(stCorrAnsw);
+        // radB2.isTheCorrectAnswer = true;
+
+        // just for another example that it is radB21
+        // so do:
+        // radB1.setText(stCorrAnsw);
+        // radB1.isTheCorrectAnswer = true;
+
+
+        /*
         radB0.setText(stCorrAnsw);
         radB1.setText(stWrongAns0);
         radB2.setText(stWrongAns1);
         radB3.setText(stWrongAns2);
+        */
 
 
     }

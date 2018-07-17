@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <RadioButton
+                <com.example.ronik.myticketproject1.MyRadioButton
                     android:id="@+id/rb0"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
                     android:padding="@dimen/padding"
                     android:onClick="onRadioButtonClicked"/>
 
-                <RadioButton
+                <com.example.ronik.myticketproject1.MyRadioButton
                     android:id="@+id/rb1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
                     android:padding="@dimen/padding"
                     android:onClick="onRadioButtonClicked"/>
 
-                <RadioButton
+                <com.example.ronik.myticketproject1.MyRadioButton
                     android:id="@+id/rb2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
                     android:padding="@dimen/padding"
                     android:onClick="onRadioButtonClicked"/>
 
-                <RadioButton
+                <com.example.ronik.myticketproject1.MyRadioButton
                     android:id="@+id/rb3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -88,6 +88,13 @@
                     android:onClick="onRadioButtonClicked"/>
             </RadioGroup>
 
+          <Button
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="OK"
+              android:onClick="checkAnswer"
+
+              />
 
 
         </LinearLayout>
