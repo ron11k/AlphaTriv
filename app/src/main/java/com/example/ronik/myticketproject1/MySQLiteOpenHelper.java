@@ -85,7 +85,9 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
         String stHumanReadable = null;
 
-        String stJson = context.getResources().getString(R.string.json_questions_str);
+        //String stJson = context.getResources().getString(R.string.json_questions_str);
+
+        String stJson = "hiiiii";
 
         //System.out.println("Mark: " + stJson); stHumanReadable
 
@@ -210,6 +212,8 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
         return theRundomRow;
     }
     //===========================================================================================
+
+
 
 
 
