@@ -42,9 +42,21 @@ public class MainActivity extends AppCompatActivity {
 
         openHelper.insertQuestionsAndAnswersManually(sqLiteDatabase);
 
-        randomizeQuestionForTheScreen();
+        TextView tvQ = (TextView) findViewById(R.id.textView);
+        MyRadioButton cans = (MyRadioButton) findViewById(R.id.rb0);
+        MyRadioButton wansw0 = (MyRadioButton) findViewById(R.id.rb1);
+        MyRadioButton wansw1 = (MyRadioButton) findViewById(R.id.rb2);
+        MyRadioButton wansw2 = (MyRadioButton) findViewById(R.id.rb3);
 
-        /*OneTableRawData otrd = openHelper.randomizeQuestion(sqLiteDatabase);
+
+
+        populateTheScreenWithQuestionAndAnswers(tvQ, cans, wansw0, wansw1, wansw2 );
+
+        /*
+
+        OneTableRawData otrd = randomizeAQuestion();
+
+        //OneTableRawData otrd = openHelper.randomizeQuestion(sqLiteDatabase);
 
 
         TextView tv = findViewById(R.id.textView);
@@ -64,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         */
 
 
+
         //openHelper.listAllQuestionsAndAnswers(sqLiteDatabase);
 
 
@@ -72,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
         registerToGetBroadcastWithPendingIntent();
     }
 
+
+    /*
     void randomizeQuestionForTheScreen(){
         TextView tvQ = (TextView) findViewById(R.id.textView);
         MyRadioButton cans = (MyRadioButton) findViewById(R.id.rb0);
@@ -84,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
         populateTheScreenWithQuestionAndAnswers(tvQ, cans, wansw0, wansw1, wansw2);
 
-    }
+    }*/
 
     private void populateTheScreenWithQuestionAndAnswers(TextView tvQ,
                                                          RadioButton cans,
@@ -130,8 +145,10 @@ public class MainActivity extends AppCompatActivity {
                 String wa1 = jsonObject.optString("D");
                 String wa2 = jsonObject.optString("E");
 
+                arr.add(new OneTableRawData(q, ca, wa0, wa1, wa2));
+
                 stHumanReadable += "\nNode " + i + " : \n q= " + q +
-                        " \n ca= " + ca + " \n wa0= " + wa0 + " \n " + wa1 + " \n " + wa2;
+                        " \n ca= " + ca + " \n wa0= " + wa0 + " \n wa1= " + wa1 + " \n wa2= " + wa2;
 
             }
 
@@ -977,7 +994,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void theUserIsRight(MyRadioButton mrb) {
+    private void theUserIsRight(MyRadioButton ca) {
 
         // the user answered correctly,
         //   Change the color of the correct answer on the screen to green
