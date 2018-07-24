@@ -7,6 +7,9 @@
 
 
 
+
+
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
@@ -16,7 +19,8 @@
         android:textAlignment="center"
         android:layout_marginLeft="@dimen/margin_right_left"
         android:layout_marginRight="@dimen/margin_right_left"
-        android:padding="@dimen/padding"/>
+        android:padding="@dimen/padding"
+        android:layout_marginTop="@dimen/padding_top"/>
 
 
     <ScrollView
@@ -46,7 +50,7 @@
                     android:layout_marginLeft="@dimen/margin_right_left"
                     android:layout_marginRight="@dimen/margin_right_left"
                     android:padding="@dimen/padding"
-                    android:onClick="onRadioButtonClicked"/>
+                    android:onClick="checkAnswer"/>
 
                 <com.example.ronik.myticketproject1.MyRadioButton
                     android:id="@+id/rb1"
@@ -59,7 +63,7 @@
                     android:layout_marginLeft="@dimen/margin_right_left"
                     android:layout_marginRight="@dimen/margin_right_left"
                     android:padding="@dimen/padding"
-                    android:onClick="onRadioButtonClicked"/>
+                    android:onClick="checkAnswer"/>
 
                 <com.example.ronik.myticketproject1.MyRadioButton
                     android:id="@+id/rb2"
@@ -72,7 +76,7 @@
                     android:layout_marginLeft="@dimen/margin_right_left"
                     android:layout_marginRight="@dimen/margin_right_left"
                     android:padding="@dimen/padding"
-                    android:onClick="onRadioButtonClicked"/>
+                    android:onClick="checkAnswer"/>
 
                 <com.example.ronik.myticketproject1.MyRadioButton
                     android:id="@+id/rb3"
@@ -85,14 +89,9 @@
                     android:layout_marginLeft="@dimen/margin_right_left"
                     android:layout_marginRight="@dimen/margin_right_left"
                     android:padding="@dimen/padding"
-                    android:onClick="onRadioButtonClicked"/>
+                    android:onClick="checkAnswer"/>
             </RadioGroup>
 
-          <Button
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:text="OK"
-              android:onClick="checkAnswer"
 
               />
 

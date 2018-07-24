@@ -9,6 +9,13 @@ public class MyRadioButton extends AppCompatRadioButton {
 
     boolean isTheCorrectAnswer = false;
 
+    public boolean isTheCorrectAnswer() {
+        return isTheCorrectAnswer;
+    }
+
+    public void setTheCorrectAnswer(boolean theCorrectAnswer) {
+        isTheCorrectAnswer = theCorrectAnswer;
+    }
 
     public MyRadioButton(Context context) {
         super(context);

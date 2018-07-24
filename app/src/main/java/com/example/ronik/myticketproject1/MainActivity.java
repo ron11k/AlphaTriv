@@ -4,11 +4,14 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.RadioButton;
+import android.webkit.WebView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,12 +25,16 @@ public class MainActivity extends AppCompatActivity {
     SQLiteDatabase sqLiteDatabase = null;
     MySQLiteOpenHelper openHelper = null;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        System.out.println("hello");
+
+
+
+
 
         this.deleteDatabase("AlphaTriv.db");
 
@@ -102,19 +109,66 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
     private void populateTheScreenWithQuestionAndAnswers(TextView tvQ,
-                                                         RadioButton cans,
-                                                         RadioButton wansw0,
-                                                         RadioButton wansw1,
-                                                         RadioButton wansw2) {
+                                                         MyRadioButton radio0,
+                                                         MyRadioButton radio1,
+                                                         MyRadioButton radio2,
+                                                         MyRadioButton radio3) {
             String st = givemeTheJSON();
 
             OneTableRawData theRandomizedQuestion = randomizeAQuestion(st);
 
+
+            // Randomize which radio button will display the correct answer
+        Random rand = new Random();
+        int x = rand.nextInt(3);
+
+
+        switch(x)
+        {
+            case (0):
+            {
+                radio0.setText(theRandomizedQuestion.getCorrectAnswer());
+                radio0.setTheCorrectAnswer(true);
+                radio1.setText(theRandomizedQuestion.getWrongAnswer0());
+                radio2.setText(theRandomizedQuestion.getWrongAnswer1());
+                radio3.setText(theRandomizedQuestion.getWrongAnswer2());
+                break;
+            }
+
+            case (1):
+            {
+                radio0.setText(theRandomizedQuestion.getWrongAnswer0());
+                radio1.setText(theRandomizedQuestion.getCorrectAnswer());
+                radio1.setTheCorrectAnswer(true);
+                radio2.setText(theRandomizedQuestion.getWrongAnswer1());
+                radio3.setText(theRandomizedQuestion.getWrongAnswer2());
+                break;
+            }
+
+            case (2):
+            {
+                radio0.setText(theRandomizedQuestion.getWrongAnswer1());
+                radio1.setText(theRandomizedQuestion.getWrongAnswer0());
+                radio2.setText(theRandomizedQuestion.getCorrectAnswer());
+                radio2.setTheCorrectAnswer(true);
+                radio3.setText(theRandomizedQuestion.getWrongAnswer2());
+                break;
+            }
+
+            case (3):
+            {
+                radio0.setText(theRandomizedQuestion.getWrongAnswer2());
+                radio1.setText(theRandomizedQuestion.getWrongAnswer0());
+                radio2.setText(theRandomizedQuestion.getWrongAnswer1());
+                radio3.setText(theRandomizedQuestion.getCorrectAnswer());
+                radio3.setTheCorrectAnswer(true);
+                break;
+            }
+        }
+
+
+
             tvQ.setText(theRandomizedQuestion.getQuestion());
-            cans.setText(theRandomizedQuestion.getCorrectAnswer());
-            wansw0.setText(theRandomizedQuestion.getWrongAnswer0());
-            wansw1.setText(theRandomizedQuestion.getWrongAnswer1());
-            wansw2.setText(theRandomizedQuestion.getWrongAnswer2());
 
     }
 
@@ -166,6 +220,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /*
+
 
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
@@ -198,6 +254,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+    */
 
 
     public void registerToGetBroadcastWithPendingIntent()
@@ -932,36 +989,99 @@ public class MainActivity extends AppCompatActivity {
 
     public void checkAnswer (View view)
     {
-        // Check which radio button was selected
+        boolean theUserIsCorrect = false;
+
+        MyRadioButton temp = (MyRadioButton)view;
+
+        Boolean b1 = temp.isTheCorrectAnswer;
+        Boolean b2 = temp.isSelected();
+        Boolean b3 = temp.isChecked();
+
+
+
+
+
+
+
+
+        System.out.println("Mark: " + b1 + " " + b2+ " " + b3);
+
+        // Check which radio button was checked
         MyRadioButton rb0 = (MyRadioButton)findViewById(R.id.rb0);
         MyRadioButton rb1 = (MyRadioButton)findViewById(R.id.rb1);
         MyRadioButton rb2 = (MyRadioButton)findViewById(R.id.rb2);
         MyRadioButton rb3 = (MyRadioButton)findViewById(R.id.rb3);
 
-        if (rb0.isSelected() == true && rb0.isTheCorrectAnswer == true)
+
+
+        if (rb0.isChecked() == true && rb0.isTheCorrectAnswer == true)
         {
+
+            theUserIsCorrect = true;
+
+
+            System.out.println("Mark: rb 0");
                 theUserIsRight(rb0);
         }
 
-        else if (rb1.isSelected() == true && rb1.isTheCorrectAnswer == true)
+        else if (rb1.isChecked() == true && rb1.isTheCorrectAnswer == true)
         {
+            theUserIsCorrect = true;
+
+            System.out.println("Mark: rb 1");
+
             theUserIsRight(rb1);
         }
 
-        else if (rb2.isSelected() == true && rb2.isTheCorrectAnswer == true)
+        else if (rb2.isChecked() == true && rb2.isTheCorrectAnswer == true)
         {
+            theUserIsCorrect = true;
+
+            System.out.println("Mark: rb 2");
+
             theUserIsRight(rb2);
         }
 
-        else if (rb3.isSelected() == true && rb3.isTheCorrectAnswer == true)
+        else if (rb3.isChecked() == true && rb3.isTheCorrectAnswer == true)
         {
+            theUserIsCorrect = true;
+
+            System.out.println("Mark: rb 3");
+
             theUserIsRight(rb3);
         }
 
+        else{
+            theUserIsWrong(view);
 
-        theUserIsWrong();
+        }
+
+        if (theUserIsCorrect == true)
+        {
+            setContentView(R.layout.layout_with_web_view);
+            WebView webview = (WebView) findViewById(R.id.webView);
+            webview.getSettings().setLoadWithOverviewMode(true);
+            webview.getSettings().setUseWideViewPort(true);
+            webview.getSettings().setJavaScriptEnabled(true);
+
+            webview.loadUrl("https://bestraveler.000webhostapp.com/");
+
+
+        }
+
 
     }
+
+    private void theUserIsWrong(View view) {
+
+        view.setBackgroundColor(Color.parseColor("#FF0000"));
+        Toast.makeText(MainActivity.this, "Sorry, try next time:)", Toast.LENGTH_SHORT).show();
+
+        MainActivity.this.finish();
+    }
+
+
+    /*
 
     private void theUserIsWrong() {
         // the user was wrong,
@@ -993,11 +1113,16 @@ public class MainActivity extends AppCompatActivity {
             //  change rb3 background to red
         }
     }
+    */
+
 
     private void theUserIsRight(MyRadioButton ca) {
 
         // the user answered correctly,
         //   Change the color of the correct answer on the screen to green
+
+        ca.setBackgroundColor(Color.parseColor("#00FF00"));
+
 
     }
 
