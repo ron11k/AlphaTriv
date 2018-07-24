@@ -14,6 +14,7 @@
 
     <color name="white_one">#ffF</color>
     <color name="red">#FF0000</color>
+    <color name="green">#2faa1d</color>
 
     <array name="array_dot_active">
         <item>@color/dot_light_screen</item>

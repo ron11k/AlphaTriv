@@ -13,16 +13,15 @@ public class MyReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        // TODO: This method is called when the BroadcastReceiver is receiving
+
         // an Intent broadcast.
 
-        System.out.println(" onReceive!");
+
 
         String theMessageFromTheIntent = intent.getStringExtra("message");
         if (theMessageFromTheIntent != null)
         {
-            Toast.makeText(context, "onReceive received the message: "+
-                    theMessageFromTheIntent, Toast.LENGTH_LONG).show();
+
         }
 
 
@@ -34,10 +33,15 @@ public class MyReceiver extends BroadcastReceiver {
             bool2 = st2.equals("waiting 15 seconds");
         if(bool2 == true)
         {
-            Toast.makeText(context, "15 seconds passed"
+            Toast.makeText(context, " Your time to answer is up, 15 seconds passed"
                     , Toast.LENGTH_LONG).show();
 
-            // todo: Here goes your code for "your time to answer is up"
+
+            // todo: As I think  here we need to close the app immediately, after the user answered wrong.
+            // todo: Also set time for 24 hours, until he can to play next game;
+            //todo: The same goes for, when user do answers right. Close the app for 24 hours.
+            //todo: The same should be done when user exits the app.
+
         }
 
     }

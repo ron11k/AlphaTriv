@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        //hello there
+
 
 
 
@@ -1062,13 +1062,20 @@ public class MainActivity extends AppCompatActivity {
 
         if (theUserIsCorrect == true)
         {
+
+            view.setBackgroundColor(Color.parseColor("#2faa1d"));
             setContentView(R.layout.layout_with_web_view);
             WebView webview = (WebView) findViewById(R.id.webView);
             webview.getSettings().setLoadWithOverviewMode(true);
             webview.getSettings().setUseWideViewPort(true);
             webview.getSettings().setJavaScriptEnabled(true);
 
+
+
             webview.loadUrl("https://bestraveler.000webhostapp.com/");
+            //todo: The webView works perfect even in that hosting with random. The only problem of that hosting is "Jiffa":( above the webView.
+            //todo: However C9 hosting breaks the random in Java.
+            //todo: Also green doesn't seem to work, when clicked right.
 
 
         }
@@ -1125,7 +1132,7 @@ public class MainActivity extends AppCompatActivity {
         // the user answered correctly,
         //   Change the color of the correct answer on the screen to green
 
-        ca.setBackgroundColor(Color.parseColor("#00FF00"));
+
 
 
     }
