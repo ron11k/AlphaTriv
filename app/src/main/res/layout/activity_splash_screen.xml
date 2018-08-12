@@ -18,7 +18,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="225dp"
         android:gravity="center"
-        android:text="AlphaTriv"
+        android:text="@string/slide_alphatriv"
         android:textStyle="bold"
         android:textColor="@color/BluesIII"
 

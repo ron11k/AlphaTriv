@@ -2,11 +2,14 @@ package com.example.ronik.myticketproject1;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.CountDownTimer;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,8 +26,9 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    SQLiteDatabase sqLiteDatabase = null;
-    MySQLiteOpenHelper openHelper = null;
+
+
+
 
 
     @Override
@@ -40,19 +44,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        this.deleteDatabase("AlphaTriv.db");
-
-        openHelper = new MySQLiteOpenHelper(this);
-
-        sqLiteDatabase = openHelper.getWritableDatabase();
-
-
-        openHelper.dropTable(sqLiteDatabase, "questions_answers");
-
-        openHelper.addTables(sqLiteDatabase);
-
-        openHelper.insertQuestionsAndAnswersManually(sqLiteDatabase);
-
         TextView tvQ = (TextView) findViewById(R.id.textView);
         MyRadioButton cans = (MyRadioButton) findViewById(R.id.rb0);
         MyRadioButton wansw0 = (MyRadioButton) findViewById(R.id.rb1);
@@ -63,54 +54,17 @@ public class MainActivity extends AppCompatActivity {
 
         populateTheScreenWithQuestionAndAnswers(tvQ, cans, wansw0, wansw1, wansw2 );
 
-        /*
 
-        OneTableRawData otrd = randomizeAQuestion();
-
-        //OneTableRawData otrd = openHelper.randomizeQuestion(sqLiteDatabase);
-
-
-        TextView tv = findViewById(R.id.textView);
-        tv.setText(otrd.getQuestion());
-
-        tv = findViewById(R.id.rb0);
-        tv.setText(otrd.getCorrectAnswer());
-
-        tv = findViewById(R.id.rb1);
-        tv.setText(otrd.getWrongAnswer0());
-
-        tv = findViewById(R.id.rb2);
-        tv.setText(otrd.getWrongAnswer1());
-
-        tv = findViewById(R.id.rb3);
-        tv.setText(otrd.getWrongAnswer2());
-        */
-
-
-
-        //openHelper.listAllQuestionsAndAnswers(sqLiteDatabase);
-
-
-        //===========================================================
 
         registerToGetBroadcastWithPendingIntent();
+
+
     }
 
 
-    /*
-    void randomizeQuestionForTheScreen(){
-        TextView tvQ = (TextView) findViewById(R.id.textView);
-        MyRadioButton cans = (MyRadioButton) findViewById(R.id.rb0);
-        MyRadioButton wansw0 = (MyRadioButton) findViewById(R.id.rb1);
-        MyRadioButton wansw1 = (MyRadioButton) findViewById(R.id.rb2);
-        MyRadioButton wansw2 = (MyRadioButton) findViewById(R.id.rb3);
 
 
-        ////new AsyncTaskDBRequest(openHelper ,tvQ, cans, wansw0, wansw1, wansw2).execute();
 
-        populateTheScreenWithQuestionAndAnswers(tvQ, cans, wansw0, wansw1, wansw2);
-
-    }*/
 
     private void populateTheScreenWithQuestionAndAnswers(TextView tvQ,
                                                          MyRadioButton radio0,
@@ -224,41 +178,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /*
 
-
-    public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.rb0: {
-                if (checked) {
-                    //
-                }
-                break;
-            }
-            case R.id.rb1: {
-                if (checked) {
-                    //
-                }
-                break;
-            }
-            case R.id.rb2: {
-                if (checked) {
-                    //
-                }
-                break;
-            }
-            case R.id.rb3: {
-                if (checked) {
-                    //
-                }
-                    break;
-            }
-        }
-    }
-    */
 
 
     public void registerToGetBroadcastWithPendingIntent()
@@ -274,9 +194,6 @@ public class MainActivity extends AppCompatActivity {
                         + (15 * 1000), pendingIntent);
     }
 
-    public void close(){
-        openHelper.close();
-    }
 
 
     private String givemeTheJSON() {
@@ -1069,72 +986,43 @@ public class MainActivity extends AppCompatActivity {
             webview.getSettings().setLoadWithOverviewMode(true);
             webview.getSettings().setUseWideViewPort(true);
             webview.getSettings().setJavaScriptEnabled(true);
-
-
-
             webview.loadUrl("https://bestraveler.000webhostapp.com/");
-            //todo: The webView works perfect even in that hosting with random. The only problem of that hosting is "Jiffa":( above the webView.
-            //todo: However C9 hosting breaks the random in Java.
-            //todo: Also green doesn't seem to work, when clicked right.
+
+            Toast.makeText(MainActivity.this, "Visit our website: alphatriv.000webhostapp.com, for registration.", Toast.LENGTH_LONG).show();
+
+
 
 
         }
 
 
+
+    }
+
+    public void onBackPressed(){
+        this.startActivity(new Intent(MainActivity.this, UserWrong.class));
+
+        return;
     }
 
     private void theUserIsWrong(View view) {
-
         view.setBackgroundColor(Color.parseColor("#FF0000"));
-        Toast.makeText(MainActivity.this, "Sorry, try next time:)", Toast.LENGTH_SHORT).show();
-
-        MainActivity.this.finish();
+        userWrong();
     }
 
-
-    /*
-
-    private void theUserIsWrong() {
-        // the user was wrong,
-        // change his selected answer to red
-        // Check which radio button was selected
-        MyRadioButton rb0 = (MyRadioButton)findViewById(R.id.rb0);
-        MyRadioButton rb1 = (MyRadioButton)findViewById(R.id.rb1);
-        MyRadioButton rb2 = (MyRadioButton)findViewById(R.id.rb2);
-        MyRadioButton rb3 = (MyRadioButton)findViewById(R.id.rb3);
-
-        if (rb0.isSelected() == true)
-        {
-            //  change rb0 background to red
-        }
-
-        else if (rb1.isSelected() == true)
-        {
-            //  change rb1 background to red
-        }
-
-
-        else if (rb2.isSelected() == true)
-        {
-            //  change rb2 background to red
-        }
-
-        else if (rb3.isSelected() == true)
-        {
-            //  change rb3 background to red
-        }
-    }
-    */
-
-
-    private void theUserIsRight(MyRadioButton ca) {
-
-        // the user answered correctly,
-        //   Change the color of the correct answer on the screen to green
-
-
+    private void userWrong() {
+        Intent i = new Intent(this, UserWrong.class);
+        startActivity(i);
 
 
     }
+
+    private void theUserIsRight(View view) {
+        view.setBackgroundColor(Color.parseColor("#2faa1d"));
+    }
+
+
+
+
 
 }

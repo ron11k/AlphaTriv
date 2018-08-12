@@ -8,19 +8,14 @@
 
     <string name="rb3">Pri ei hinc audire deserunt, nec tollit postea id, ut pri veniam rationibus.</string>
 
-    <string name="next">Next</string>
-    <string name="skip">Skip</string>
-    <string name="start">Let\'s do it!</string>
+
 
 
     <string name="slide_alphatriv">AlphaTriv</string>
-    <string name="slide_alphatriv_hello">LET\'S WIN IT ALL!!!</string>
 
 
-    <string name="rules">JUST 3 RULES</string>
-    <string name="rules_1">(!) No Pickin\'! Once you exit the app, the trivia will be closed for 24 hours!</string>
-    <string name="rules_2">(!) One try. Sorry, once clicked on the button, the answer will be decided.</string>
-    <string name="rules_3">(!) Think Quick! Your time is limited!</string>
+
+    <string name="next_time">Next try available in: </string>
 
 
 </resources>

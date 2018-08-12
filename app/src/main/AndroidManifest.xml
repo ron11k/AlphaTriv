@@ -6,12 +6,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/altr"
+        android:icon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
 
         <receiver
             android:name=".MyReceiver"
@@ -26,6 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".UserWrong"></activity>
     </application>
 
 </manifest>
